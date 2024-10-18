@@ -1,0 +1,12 @@
+.container{
+    padding: 5px;
+    border-radius: 15px;
+    border: #58cb1f 1px solid;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 600px;
+}
+.buttonsContainer{
+    align-content: center;
+}
