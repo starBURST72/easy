@@ -9,7 +9,7 @@ function ToDoAddForm({ handleSubmit }: TodoAddFormProps) {
     <form className={style.container} onSubmit={handleSubmit}>
       <div className={style.card}>
         <h2>Создать новую таску</h2>
-        <div>
+        <div className={style.inputForm}>
           <input className={style.input} type="text" name="title" />
           <button className={style.button} type="submit">
             Добавить

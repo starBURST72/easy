@@ -1,6 +1,6 @@
 import styles from "./TodoList.module.css";
 import ToDoItem from "../ToDoItem/ToDoItem.tsx";
-import { Todo, TodoRequest } from "../../../types/ToDoTypes.ts";
+import { Todo, TodoInfo, TodoRequest } from "../../../types/ToDoTypes.ts";
 import { deleteTodo, fetchAllTodo, updateTodo } from "../../../api/api.ts";
 import { Dispatch, SetStateAction, useEffect } from "react";
 interface TodoListProps {
@@ -9,8 +9,10 @@ interface TodoListProps {
   setTodos: Dispatch<SetStateAction<Todo[]>>;
   loading: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
+  setInfo: Dispatch<SetStateAction<TodoInfo | undefined>>;
 }
 function TodoList({
+  setInfo,
   filter,
   todos,
   setTodos,
@@ -22,6 +24,7 @@ function TodoList({
       setLoading(true);
       const data = await fetchAllTodo(filter);
       setTodos(data.data);
+      setInfo(data.info);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {

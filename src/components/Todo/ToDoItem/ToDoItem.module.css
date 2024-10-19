@@ -6,7 +6,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 600px;
+    box-sizing: border-box;
+    width: 100%;
     margin: 10px;
     font-size: large;
     background-color: #bedab1;

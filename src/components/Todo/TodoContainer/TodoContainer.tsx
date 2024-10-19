@@ -5,11 +5,16 @@ import styles from "./TodoContainer.module.css";
 import { createTodo } from "../../../api/api.ts";
 import TodoFilter from "../TodoFilter/TodoFilter.tsx";
 import { statusFilter } from "../../../constants/TodoConstants.ts";
-import { Todo } from "../../../types/ToDoTypes.ts";
+import { Todo, TodoInfo } from "../../../types/ToDoTypes.ts";
 
 function TodoContainer() {
   const [filter, setFilter] = useState(statusFilter.all);
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [info, setInfo] = useState<TodoInfo | undefined>({
+    all: 0,
+    completed: 0,
+    inWork: 0,
+  });
   const [loading, setLoading] = useState<boolean>(true);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -42,9 +47,10 @@ function TodoContainer() {
         <h1 className={styles.h1}>To Do List</h1>
       </div>
 
-      <TodoFilter updateFilter={updateFilter} filter={filter} />
+      <TodoFilter updateFilter={updateFilter} filter={filter} info={info} />
       <ToDoAddForm handleSubmit={handleSubmit} />
       <TodoList
+        setInfo={setInfo}
         filter={filter}
         todos={todos}
         setTodos={setTodos}

@@ -9,16 +9,18 @@
     background: #ccbebe;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 6px 10px rgba(0, 0, 0, 0.08);
 }
+.inputForm{
+    margin-bottom: 10px;
+}
 .card{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    padding-top:10px;
     border-radius: 15px;
     border: #58cb1f 1px solid;
     justify-content: space-between;
-    width: 600px;
-    margin: 10px;
+    width: 90%;
     font-size: large;
     background-color: #bedab1;
 }
