@@ -1,0 +1,26 @@
+.container{
+    margin:15px 15px 15px 15px;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    background: #ccbebe;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 6px 10px rgba(0, 0, 0, 0.08);
+}
+.h2{
+    margin-top: 15px;
+    font-family: monospace;
+    align-self: center;
+    justify-self: center;
+    justify-content: center;
+    display: flex;
+    font-size: large;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

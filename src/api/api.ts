@@ -6,7 +6,6 @@ import {
 } from "../types/ToDoTypes.ts";
 export const API_ADDRESS = "https://easydev.club/api/v1";
 
-export const token = "394badd151f838e17536fab3f960978a4b476f12";
 export enum OUR_API_ENDPOINTS {
   admin = "admin",
   user = "user",
@@ -24,8 +23,12 @@ export async function fetchTodo(id: number): Promise<Todo> {
   return data;
 }
 
-export async function fetchAllTodo(): Promise<MetaResponse<Todo, TodoInfo>> {
-  const response = await fetch(`${API_ADDRESS}/${OUR_API_ENDPOINTS.todos}`);
+export async function fetchAllTodo(
+  filter?: string,
+): Promise<MetaResponse<Todo, TodoInfo>> {
+  const response = await fetch(
+    `${API_ADDRESS}/${OUR_API_ENDPOINTS.todos}?filter=${filter}`,
+  );
   if (!response.ok) {
     throw new Error("Ошибка");
   }
@@ -39,6 +42,7 @@ export async function createTodo(request: TodoRequest): Promise<Todo> {
     headers: {
       "Content-Type": "application/json",
     },
+
     body: JSON.stringify(request),
   });
 

@@ -1,10 +1,10 @@
 import "./App.css";
-import ToDoList from "./components/ToDoList/ToDoList.tsx";
+import TodoContainer from "./components/Todo/TodoContainer/TodoContainer.tsx";
 
 function App() {
   return (
     <>
-      <ToDoList></ToDoList>
+      <TodoContainer />
     </>
   );
 }

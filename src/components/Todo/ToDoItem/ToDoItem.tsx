@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Todo, TodoRequest } from "../../types/ToDoTypes.ts";
+import { Todo, TodoRequest } from "../../../types/ToDoTypes.ts";
 import style from "./ToDoItem.module.css";
+import { Cancel, Check, Edit, Trash } from "../../../assets/svgIcons.tsx";
 interface Props {
   todo: Todo;
   remove: (id: number) => Promise<void>;
@@ -18,28 +19,30 @@ function ToDoItem({ todo, remove, update }: Props) {
       {isEditing ? (
         <div className={style.container} key={todo.id}>
           <input
+            className={style.input}
             type="text"
             value={title}
             onChange={(e) => setNewTitle(e.target.value)}
           />
           <div className={style.buttonsContainer}>
-            <button onClick={() => saveTodo(todo.id, { title: title })}>
-              Сохранить
-            </button>
-            <button onClick={() => remove(todo.id)}>удалить</button>
+            <Check onClick={() => saveTodo(todo.id, { title: title })} />
+            <Cancel onClick={() => setEditing(false)} />
           </div>
         </div>
       ) : (
         <div className={style.container} key={todo.id}>
           <input
+            className={style.checkbox}
+            id="checkbox"
             type="checkbox"
             checked={todo.isDone}
             onChange={(e) => saveTodo(todo.id, { isDone: e.target.checked })}
           />
-          <h2>{todo.title}</h2>
+          <label htmlFor="checkbox" />
+          <h2 className={style.h2}>{todo.title}</h2>
           <div className={style.buttonsContainer}>
-            <button onClick={() => setEditing(true)}>Редактировать</button>
-            <button onClick={() => remove(todo.id)}>Удалить</button>
+            <Edit onClick={() => setEditing(true)} />
+            <Trash onClick={() => remove(todo.id)} />
           </div>
         </div>
       )}

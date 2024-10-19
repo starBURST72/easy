@@ -1,0 +1,22 @@
+.container{
+    width: 100%;
+    background: #888888;
+}
+.button{
+    height: 30px;
+    background: #58cb1f;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+    transition: background 0.2s ease-out;
+}
+
+.button:hover {
+    background: #90EE90;
+}
+.button:disabled{
+    cursor: not-allowed;
+    background: #888888;
+}
