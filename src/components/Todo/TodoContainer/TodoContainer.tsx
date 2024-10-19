@@ -10,6 +10,7 @@ import { Todo, TodoInfo } from "../../../types/ToDoTypes.ts";
 function TodoContainer() {
   const [filter, setFilter] = useState(statusFilter.all);
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [error, setError] = useState("");
   const [info, setInfo] = useState<TodoInfo | undefined>({
     all: 0,
     completed: 0,
@@ -22,15 +23,18 @@ function TodoContainer() {
     const target = event.target as typeof event.target & {
       title: { value: string };
     };
-    if (target.title.value === "") {
+    if (target.title.value.length < 2 || target.title.value.length > 64) {
+      setError("Описание задачи должно содержать от 2 до 64 символов.");
       return;
     }
     try {
       const newTodo = await createTodo({ title: target.title.value });
       setTodos([...todos, newTodo]);
       target.title.value = "";
+      setError(""); // Сброс ошибки после успешного создания задачи
     } catch (error) {
       console.error(error);
+      setError("Ошибка при создании задачи. Пожалуйста, попробуйте снова.");
     } finally {
       setLoading(false);
     }
@@ -48,6 +52,7 @@ function TodoContainer() {
       </div>
 
       <TodoFilter updateFilter={updateFilter} filter={filter} info={info} />
+      {error && <div style={{ color: "red" }}>{error}</div>}
       <ToDoAddForm handleSubmit={handleSubmit} />
       <TodoList
         setInfo={setInfo}
