@@ -11,9 +11,7 @@ interface Props {
 function ToDoItem({ todo, remove, update }: Props) {
   const [isEditing, setEditing] = useState(false);
   const [title, setNewTitle] = useState(todo.title);
-  const saveTodo = (id: number, updatedTodo: TodoRequest) => {
-    update(id, updatedTodo);
-  };
+
   return (
     <>
       {isEditing ? (
@@ -25,7 +23,7 @@ function ToDoItem({ todo, remove, update }: Props) {
             onChange={(e) => setNewTitle(e.target.value)}
           />
           <div className={style.buttonsContainer}>
-            <Check onClick={() => saveTodo(todo.id, { title: title })} />
+            <Check onClick={() => update(todo.id, { title: title })} />
             <Cancel onClick={() => setEditing(false)} />
           </div>
         </div>
@@ -33,12 +31,12 @@ function ToDoItem({ todo, remove, update }: Props) {
         <div className={style.container} key={todo.id}>
           <input
             className={style.checkbox}
-            id="checkbox"
+            id={`checkbox${todo.id}`}
             type="checkbox"
             checked={todo.isDone}
-            onChange={(e) => saveTodo(todo.id, { isDone: e.target.checked })}
+            onChange={() => update(todo.id, { isDone: !todo.isDone })}
           />
-          <label htmlFor="checkbox" />
+          <label htmlFor={`checkbox${todo.id}`} />
           <h2 className={style.h2}>{todo.title}</h2>
           <div className={style.buttonsContainer}>
             <Edit onClick={() => setEditing(true)} />

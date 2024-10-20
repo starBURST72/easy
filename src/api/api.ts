@@ -19,8 +19,7 @@ export async function fetchTodo(id: number): Promise<Todo> {
   if (!response.ok) {
     throw new Error("Ошибка");
   }
-  const data: Todo = await response.json();
-  return data;
+  return await response.json();
 }
 
 export async function fetchAllTodo(
@@ -32,8 +31,7 @@ export async function fetchAllTodo(
   if (!response.ok) {
     throw new Error("Ошибка");
   }
-  const data: MetaResponse<Todo, TodoInfo> = await response.json();
-  return data;
+  return await response.json();
 }
 
 export async function createTodo(request: TodoRequest): Promise<Todo> {
@@ -49,8 +47,7 @@ export async function createTodo(request: TodoRequest): Promise<Todo> {
   if (!response.ok) {
     throw new Error("Ошибка");
   }
-  const data: Todo = await response.json();
-  return data;
+  return await response.json();
 }
 
 export async function deleteTodo(id: number): Promise<void> {
@@ -88,6 +85,5 @@ export async function updateTodo(
   if (!response.ok) {
     throw new Error("Ошибка");
   }
-  const data: Todo = await response.json();
-  return data;
+  return await response.json();
 }

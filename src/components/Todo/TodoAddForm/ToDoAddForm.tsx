@@ -4,7 +4,6 @@ interface TodoAddFormProps {
   handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
 }
 function ToDoAddForm({ handleSubmit }: TodoAddFormProps) {
-  console.log("rerender addform");
   return (
     <form className={style.container} onSubmit={handleSubmit}>
       <div className={style.card}>
