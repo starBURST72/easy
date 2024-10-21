@@ -34,7 +34,7 @@ function TodoList({
 
   useEffect(() => {
     fetchData(filter);
-  }, [filter]);
+  }, [filter, todos]);
 
   const handleDeleteClick = async (id: number) => {
     setLoading(true);
